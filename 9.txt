@@ -1,0 +1,46 @@
+#include <LPC214x.h> 
+void delay() { 
+int i,j; 
+for(i=0;i<200;i++) 
+for(j=0;j<1000;j++); } 
+void UART0_Init(void) { 
+PINSEL0 |= 0x00000005;  
+U0LCR = 0x83;  
+U0DLL = 97;  
+U0DLM = 0; 
+U0LCR = 0x03; // DLAB=0 } 
+void UART0_TxChar(char ch) { 
+while(!(U0LSR & 0x20));  
+U0THR = ch; } 
+int main() { 
+unsigned int i; 
+UART0_Init(); 
+while(1) { 
+for(i=0;i<16;i++) { 
+if(i < 10) 
+UART0_TxChar('0' + i); 
+else 
+UART0_TxChar('A' + (i-10)); 
+UART0_TxChar('\r');  
+UART0_TxChar('\n'); 
+delay(); } } } 
+#include <LPC214x.h> 
+Void UART0_Init(void) { 
+VPBDIV = 0x01; // PCLK = CCLK (12 MHz) 
+PINSEL0 = 0x00000005;  
+U0LCR = 0x83;  
+U0DLL = 78;  
+U0DLM = 0; 
+U0LCR = 0x03; } 
+Void UART0_Send(char ch) { 
+While(!(U0LSR & 0x20)); 
+U0THR = ch; } 
+Int main(void) { 
+Int I;  
+UART0_Init(); 
+While(1) { 
+UART0_Send(‘O’); 
+UART0_Send(‘K’); 
+UART0_Send(‘\r’); 
+UART0_Send(‘\n’); 
+For(i=0; i<5000000; i++);  } }
