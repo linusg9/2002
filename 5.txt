@@ -1,0 +1,7 @@
+#include <LPC214x.h> 
+Const unsigned int sq[11] = {0,1,4,9,16,25,36,49,64,81,100}; 
+Unsigned int result;  
+Int main() { 
+Int n = 7; 
+Result = sq[n]; 
+While(1); }
