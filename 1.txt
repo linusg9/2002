@@ -1,0 +1,6 @@
+#include <LPC214x.h> 
+Unsigned short a = 1200, b = 25; 
+Unsigned int result; 
+Int main(void) { 
+Result = (unsigned int)a * b; 
+While(1);  }
